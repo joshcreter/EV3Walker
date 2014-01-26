@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<project name="EV3FirstProgram" basedir="." default="copy">
+<project name="EV3Walker" basedir="." default="copy">
     <property name="source.dir"     value="src"/>
     <property name="lib.dir"        value="/Users/josh/git/ev3/ev3classes"/>
     <property name="class.dir"      value="build"/>
     <property name="jar.dir"        value="dist"/>
-    <property name="main-class"     value="EV3Walker"/>
+    <property name="main-class"     value="ev3Walker.Main"/>
     <property name="lejos.home"     value="/home/root/lejos"/>
     <property name="ev3.host"       value="192.168.0.106"/>
 
