@@ -11,9 +11,9 @@ public class Main {
 
 		Behavior b1 = new ev3Walker.behavior.FindMotorLimits();
 		//Behavior b2 = new ev3Walker.behavior.Crouch();
-		 Behavior b2 = new ev3Walker.behavior.Stretch();
+//		 Behavior b2 = new ev3Walker.behavior.Stretch();
 
-		Behavior[] behaviorList = { b1, b2 };
+		Behavior[] behaviorList = { b1 };
 		Arbitrator arbitrator = new Arbitrator(behaviorList);
 		LCD.drawString("Main: Arb setup", 0, 1);
 
