@@ -198,38 +198,39 @@ public class LinearActuatorNXT implements LinearActuator {
 		// wait until the actuator shaft starts moving (with a time limit)
 		int begTacho = LinearActuatorNXT.this.encoderMotor.getTachoCount();
 		long begTime = System.currentTimeMillis();
-		while (!LinearActuatorNXT.this.killCurrentAction
-				&& (begTacho == LinearActuatorNXT.this.encoderMotor
-						.getTachoCount())) {
-			doWait(LinearActuatorNXT.this.tick_wait / 2);
-			// kill the move and exit if it takes too long to start moving
-			if ((System.currentTimeMillis() - begTime) > LinearActuatorNXT.this.tick_wait * 6) {
-				LinearActuatorNXT.this.isStalled = true;
-				LinearActuatorNXT.this.killCurrentAction = true; // will cause
-																	// loop
-																	// below to
-																	// immediately
-																	// finish
-				break;
-			}
-		}
 
+		// while (!LinearActuatorNXT.this.killCurrentAction
+		// && (begTacho == LinearActuatorNXT.this.encoderMotor
+		// .getTachoCount())) {
+		// doWait(LinearActuatorNXT.this.tick_wait / 2);
+		// // kill the move and exit if it takes too long to start moving
+		// if ((System.currentTimeMillis() - begTime) >
+		// LinearActuatorNXT.this.tick_wait * 6) {
+		// LinearActuatorNXT.this.isStalled = true;
+		// LinearActuatorNXT.this.killCurrentAction = true; // will cause
+		// // loop
+		// // below to
+		// // immediately
+		// // finish
+		// break;
+		// }
+		// }
+		//
 		// monitor the move and stop when stalled or action completes
 		begTime = System.currentTimeMillis();
 		temptacho = LinearActuatorNXT.this.tachoCount;
+
 		while (!LinearActuatorNXT.this.killCurrentAction) {
 			// Stall check. if no tacho change...
 			if (begTacho == LinearActuatorNXT.this.encoderMotor.getTachoCount()) {
 				// ...and we exceed STALL_COUNT wait periods and have been
 				// commanded to move, it probably means we have stalled
-				if (System.currentTimeMillis() - begTime > LinearActuatorNXT.this.tick_wait
-						* STALL_COUNT) {
+				if (System.currentTimeMillis() - begTime > LinearActuatorNXT.this.tick_wait * STALL_COUNT) {
 					LinearActuatorNXT.this.isStalled = true;
 					break;
 				}
 			} else {
-				// The tacho is moving, get the current point and time for next
-				// comparision
+				// The tacho is moving, get the current point and time for next comparison
 				begTacho = LinearActuatorNXT.this.encoderMotor.getTachoCount();
 				begTime = System.currentTimeMillis();
 			}
@@ -256,16 +257,15 @@ public class LinearActuatorNXT implements LinearActuator {
 			doWait(LinearActuatorNXT.this.tick_wait / 2);
 		}
 
-		// stop the motor
+		// // stop the motor
 		LinearActuatorNXT.this.encoderMotor.stop();
 		stop(); // potentially redundant state-setting when user calls stop()
-		LinearActuatorNXT.this.tachoCount = temptacho
-				- LinearActuatorNXT.this.encoderMotor.getTachoCount();
+		LinearActuatorNXT.this.tachoCount = temptacho - LinearActuatorNXT.this.encoderMotor.getTachoCount();
 
-		// set the power back (if changed)
-		if (LinearActuatorNXT.this.distanceTicks - tacho <= 4 && power > 80)
-			LinearActuatorNXT.this.encoderMotor
-					.setPower(LinearActuatorNXT.this.motorPower);
+		 // set the power back (if changed)
+		 if (LinearActuatorNXT.this.distanceTicks - tacho <= 4 && power > 80)
+		 LinearActuatorNXT.this.encoderMotor
+		 .setPower(LinearActuatorNXT.this.motorPower);
 
 	}
 
@@ -331,6 +331,8 @@ public class LinearActuatorNXT implements LinearActuator {
 	private static void doWait(long milliseconds) {
 		try {
 			Thread.sleep(milliseconds);
+	//		pause(200);
+			
 		} catch (InterruptedException e) {
 			; // do nothing
 		}

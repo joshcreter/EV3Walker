@@ -2,6 +2,7 @@ package ev3Walker;
 
 import lejos.hardware.Button;
 import ev3Walker.LinearActuatorNXT;
+//import lejos.hardware.device.LnrActrFirgelliNXT;
 import lejos.hardware.device.NXTMMX;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.Motor;
@@ -10,6 +11,7 @@ import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.robotics.EncoderMotor;
+import lejos.robotics.LinearActuator;
 import lejos.robotics.RegulatedMotor;
 
 public class Model {
@@ -46,9 +48,9 @@ public class Model {
 	 * rightAnkleMotor;
 	 */
 
-	public static LinearActuatorNXT leftKneeMotor = new LinearActuatorNXT(
+	public static LinearActuator leftKneeMotor = new LinearActuatorNXT(
 			new NXTMotor(MotorPort.A));
-	public static LinearActuatorNXT rightKneeMotor = new LinearActuatorNXT(
+	public static LinearActuator rightKneeMotor = new LinearActuatorNXT(
 			new NXTMotor(MotorPort.B));
 
 	private static void resetMotorTachoCounts() {
